@@ -1,10 +1,8 @@
 const express = require('express');
-const dotenv = require('dotenv');
 const db = require('./config/db.js');
-// const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 require('dotenv').config();
-
 const app = express();
 
 // Middleware
@@ -12,11 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-// app.use('/api', userRoutes);
+app.use('/login', authRoutes);
 
 // Start the server
 
-const initApp = async () => {
+const start = async () => {
   console.log("Testing the database connection..");
   try {
     await db.authenticate();
@@ -27,8 +25,7 @@ const initApp = async () => {
   }
 }
 
-initApp();
-
+start();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
