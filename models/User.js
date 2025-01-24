@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const db = require('../config/db');
 
 const User = db.define('User', {
+  email:{
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
   collegeId: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -15,24 +20,12 @@ const User = db.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  admissionYear: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  branch: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  isSenior: {
+  isJunior: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
   finalResult: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  startTime: {
-    type: DataTypes.DATE,
     allowNull: true,
   },
 });

@@ -1,12 +1,13 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { col } = require('sequelize');
 
 const login = async (req, res) => {
-  const { collegeId, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { collegeId } });
+    const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -16,7 +17,7 @@ const login = async (req, res) => {
     }
     
     const token = jwt.sign(
-      {collegeId: user.collegeId, name: user.name },
+      {email: user.email, name: user.name, collegeId: user.collegeId},
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
