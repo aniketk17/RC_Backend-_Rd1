@@ -2,10 +2,14 @@ const { DataTypes } = require('sequelize');
 const db = require('../config/db');
 
 const User = db.define('User', {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
+  collegeId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -19,18 +23,9 @@ const User = db.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  collegeId: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
   isSenior: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-  },
-  progressId: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
   },
   finalResult: {
     type: DataTypes.INTEGER,
@@ -39,10 +34,6 @@ const User = db.define('User', {
   startTime: {
     type: DataTypes.DATE,
     allowNull: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
   },
 });
 
