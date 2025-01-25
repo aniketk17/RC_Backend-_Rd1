@@ -8,6 +8,7 @@ const db = new Sequelize(
   {
     host: process.env.DB_HOST, 
     dialect: 'postgres', 
+    protocol : 'postgres',
     port: process.env.DB_PORT || 5432, 
     logging: false,
   }
