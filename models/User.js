@@ -22,6 +22,7 @@ const User = db.define('User', {
   finalResult: {
     type: DataTypes.INTEGER,
     allowNull: true,
+    defaultValue: 0,
   },
 });
 
