@@ -7,11 +7,6 @@ const User = db.define('User', {
     allowNull: false,
     unique: true
   },
-  collegeId: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -27,6 +22,7 @@ const User = db.define('User', {
   finalResult: {
     type: DataTypes.INTEGER,
     allowNull: true,
+    defaultValue: 0,
   },
 });
 
