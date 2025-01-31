@@ -15,8 +15,8 @@
 1. Login - done
 2. Leaderboard API - done
 3. Result API
-4. Lifeline -1
-5. Lifeline -2
-6. Lifeline -3
+4. Lifeline - Skip question
+5. Lifeline - Freeze Time
+6. Lifeline - Double points for 1 question
 7. Submit ans
 8. Get first question
