@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 const { col } = require('sequelize');
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { id, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { id } });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -17,7 +17,7 @@ const login = async (req, res) => {
     }
     
     const token = jwt.sign(
-      {email: user.email, name: user.name},
+      {id: user.id, name: user.name},
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
