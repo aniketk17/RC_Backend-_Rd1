@@ -1,8 +1,12 @@
 const express = require('express');
 const db = require('./config/db.js');
+const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const questionRoutes = require('./routes/questionRoutes');
 const lifelineRoutes = require('./routes/lifelineRoutes');
+const cors = require('cors');
+const leaderboardRoutes = require('./routes/leaderboardRoutes');
+const Leaderboard = require('./models/leaderboard');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -11,12 +15,16 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
+
 
 // Routes
 app.use('/login', authRoutes);
 app.use('/quiz', questionRoutes);
 app.use('/lifelines', lifelineRoutes);
+app.use('/leaderboard', leaderboardRoutes);
+
 
 // Start the server
 
@@ -30,10 +38,17 @@ const start = async () => {
     console.error("Unable to connect to the database:", error.original);
   }
 }
-
+db
+  .sync()
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log(`Server running on port ${process.env.PORT}`);
+    });
+  })
+  .catch(err => console.log('Database sync error: ' + err));
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 start();
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Sync database and start server
