@@ -1,6 +1,9 @@
 const express = require('express');
 const db = require('./config/db.js');
 const authRoutes = require('./routes/authRoutes');
+const questionRoutes = require('./routes/questionRoutes');
+const lifelineRoutes = require('./routes/lifelineRoutes');
+const cors = require('cors');
 
 require('dotenv').config();
 const app = express();
@@ -8,9 +11,12 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes
 app.use('/login', authRoutes);
+app.use('/quiz', questionRoutes);
+app.use('/lifelines', lifelineRoutes);
 
 // Start the server
 
