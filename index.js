@@ -22,6 +22,7 @@ app.use(cors());
 // Routes
 app.use('/login', authRoutes);
 app.use('/quiz', questionRoutes);
+app.use('/progress',progressRoutes);
 app.use('/lifelines', lifelineRoutes);
 app.use('/leaderboard', leaderboardRoutes);
 
