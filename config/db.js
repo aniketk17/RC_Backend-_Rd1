@@ -9,7 +9,7 @@ const db = new Sequelize(
     host: process.env.DB_HOST, 
     dialect: 'postgres', 
     protocol : 'postgres',
-    port: process.env.DB_PORT || 5432, 
+    port: 5432, 
     logging: false,
   }
 );
@@ -17,5 +17,6 @@ db
   .authenticate()
   .then(() => console.log('Database connected...'))
   .catch(err => console.log('Error: ' + err));
+
 
 module.exports = db;

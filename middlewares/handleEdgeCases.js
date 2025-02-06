@@ -1,5 +1,5 @@
 const Progress = require('../models/Progress');
-const User = require('../models/User');
+const User = require('../models/UserModel');
 
 const handleEdgeCases = async (req, res, next) => {
     try {

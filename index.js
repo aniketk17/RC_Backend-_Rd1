@@ -2,12 +2,13 @@ const express = require('express');
 const db = require('./config/db.js');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const progressRoutes = require('./routes/progressRoutes');
 const questionRoutes = require('./routes/questionRoutes');
 const lifelineRoutes = require('./routes/lifelineRoutes');
 const cors = require('cors');
 const leaderboardRoutes = require('./routes/leaderboardRoutes');
 const Leaderboard = require('./models/leaderboard');
-const cors = require('cors');
+const { updateProgress } = require('./controllers/progressController.js');
 
 require('dotenv').config();
 const app = express();
@@ -18,38 +19,30 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-
 // Routes
 app.use('/login', authRoutes);
 app.use('/quiz', questionRoutes);
-app.use('/progress',progressRoutes);
+app.use('/progress', progressRoutes);
 app.use('/lifelines', lifelineRoutes);
 app.use('/leaderboard', leaderboardRoutes);
 
-
 // Start the server
-
 const start = async () => {
-  console.log("Testing the database connection..");
+  console.log("Testing the database connection...");
   try {
     await db.authenticate();
-    await db.sync({ alter: true });
+    await db.sync({ force: false }); // or { alter: true }
+    console.log("Database synced!");
+
     console.log("Connection has been established successfully.");
+
+    const PORT = process.env.PORT || 5001; // Use environment variable for flexibility
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   } catch (error) {
     console.error("Unable to connect to the database:", error.original);
   }
-}
-db
-  .sync()
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log(`Server running on port ${process.env.PORT}`);
-    });
-  })
-  .catch(err => console.log('Database sync error: ' + err));
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
+};
+
 start();
-// Sync database and start server

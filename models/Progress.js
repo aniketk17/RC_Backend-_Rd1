@@ -1,52 +1,62 @@
 const { DataTypes } = require('sequelize');
 const db = require('../config/db');
-const User = require('./User');
+const UserModel = require('./UserModel'); // Importing 'UserModel'
 const Question = require('./Question');
 
 const Progress = db.define('Progress', {
-  user_id: {
+  progress_id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,  // Automatically generate a unique progress_id
+  },
+  user_id: {
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
-      model: User,
-      key: 'id'
+      model: 'UserModel',
+      key: 'user_id',  // Reference the user_id in the User model
     },
-    unique: true
+    onDelete: 'CASCADE',  // Ensures deleting a user will delete their progress
   },
+
   question_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Question,
-      key: 'id'
-    }
+      model: 'Question', // Change from `Question` to `'Questions'`
+      key: 'question_id',
+    },
+    onDelete: 'SET NULL',
   },
   current_question_id: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   first_attempt: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
+    defaultValue: true,
+    allowNull: false,
   },
   second_attempt: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    allowNull: true
-  },
-  lifeline_counter: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
+    allowNull: true,
   },
   marks: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+  },
+  lifelines_used: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
   streak: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
-  }
+    defaultValue: 0,
+  },
+}, {
+  freezeTableName: true,  // Prevent Sequelize from pluralizing the table name
+  timestamps: true,  // Enable createdAt & updatedAt
 });
 
 module.exports = Progress;

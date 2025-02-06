@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "SoFc@4516",
+    "database": "rc",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "SoFc@4516",
+    "database": "rc_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "SoFc@4516",
+    "database": "rc_production",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

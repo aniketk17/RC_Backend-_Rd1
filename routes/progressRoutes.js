@@ -4,6 +4,6 @@ const { updateProgress } = require('../controllers/progressController');
 
 const router = express.Router();
 
-router.post('/update', authMiddleware, updateProgress);
+router.post('/update', updateProgress);
 
 module.exports = router;
