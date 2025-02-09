@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const { col } = require('sequelize');
 
 const login = async (req, res) => {
-  const { id, password } = req.body;
+  const { team_name, password } = req.body;
 
   try {
     const user = await User.findOne({ where: { id } });
