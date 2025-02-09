@@ -4,6 +4,6 @@ const { updateProgress } = require('../controllers/progressController');
 
 const router = express.Router();
 
-router.post('/update', updateProgress);
+router.post('/updateProgress', updateProgress);
 
 module.exports = router;

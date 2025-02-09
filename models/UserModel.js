@@ -22,9 +22,10 @@ const UserModel = db.define('UserModel', {  // Renamed the model to 'UserModel' 
     type: DataTypes.STRING,
     allowNull: false,
   },
-  name: {
+  team_name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
   is_junior: {
     type: DataTypes.BOOLEAN,
