@@ -1,5 +1,5 @@
 const express = require('express');
-const {login}  = require('../controllers/authController');
+const login  = require('../controllers/authController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -10,4 +10,4 @@ router.get('/profile', authMiddleware, (req, res) => {
   res.json({ message: 'This is a protected route', userId: req.user.id });
 });
 
-module.exports = router;
+module.exports = router;  
