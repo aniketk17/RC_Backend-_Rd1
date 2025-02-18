@@ -6,7 +6,7 @@ dotenv.config();
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    console.log(email);
+    // console.log(email);
     try {
         const user = await User.findOne({
             // attributes: ['password', 'userid', 'isSenior'],
