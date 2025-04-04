@@ -1,22 +1,61 @@
-# RC Backend Flow
-1. Basic user auth done when user logs on to system. Once the user auth is done, the user gets redirected to the instruction page where all the directions, rules and instructions are written for the user.
-2. Once, the user clcks on 'proceed' button, the timer gets triggered by both frontend and backend for the test simultaneously. The question schema is then filtered based on boolean isJunior and then randomized.
-3. A question then appears, if user gets it correct, the streak field is incremented by 1 in the progress schema, if the user gets the answer wrong in the 1st attempt, he is given 2nd attempt to get the question right along with some penalty. But the streak won't be incremented this time.
-4. Once the streak reaches 3, the lifeline feature gets unlocked. The user can then use a lifeline if he/she is stuck in a question. There are 3 lifelines available to use (just like KBC).
-5. The questions keep on coming until the designated time for quix is over. Once the quiz time is over, the JWT token of the user is deleted and the final result of the user is then shown on the screen once the test is over.
-6. There is also a live leaderboard, which keeps updating. This leaderboard is taken from progress schema of each user. This leaderboard is updated on a real-time basis. 
+# Reverse Coding Event Platform
 
-## Models: 
-1. User - done 
-2. Progress - done
-3. Question - done
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue)](https://docker.com)
+[![Azure VM](https://img.shields.io/badge/Cloud-Azure%20VM-blue)](https://azure.microsoft.com)
+[![NGINX](https://img.shields.io/badge/Server-NGINX-green)](https://nginx.org)
+[![Node.js](https://img.shields.io/badge/Backend-Node.js-green)](https://nodejs.org)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://www.postgresql.org)
+[![JWT Auth](https://img.shields.io/badge/Security-JWT-orange)](https://jwt.io)
 
-## APIs:
-1. Login - done
-2. Leaderboard API - done
-3. Result API
-4. Lifeline - Skip question
-5. Lifeline - Freeze Time
-6. Lifeline - Double points for 1 question
-7. Submit ans
-8. Get first question
+A competitive Reverse Coding event platform backend with real-time features, containerized with Docker and hosted on Azure VM with NGINX reverse proxy. Successfully handled 200+ participants during coding competitions.
+
+## Key Features
+
+- **Reverse Coding Challenge**:
+  - Problem statements without explicit instructions
+  - Participants deduce functionality from given examples
+  - Two-attempt system with scoring penalties
+
+- **Competitive Mechanics**:
+  - Streak-based rewards (3 correct solutions unlock lifelines)
+  - Time-pressured environment with synchronized timers
+  - Junior/Senior question partitioning
+
+- **KBC-style Lifelines**:
+  - **Skip Challenge**: Get a new problem statement
+  - **Time Freeze**: Pause the countdown timer
+  - **Double Points**: 2x score for current challenge
+
+- **Production Infrastructure**:
+  - NGINX reverse proxy with SSL termination
+  - Azure VM auto-scaling configuration
+  - Docker container orchestration
+  - Real-time monitoring dashboard
+
+## My Contributions
+
+### 1. Lifeline System Implementation
+- Built 3 core lifeline APIs:
+  - Skip Challenge (Replace current question)
+  - Time Freeze (Pause timer temporarily)
+  - Double Points (Score multiplier)
+- Integrated with streak system (unlocked after 3 consecutive correct answers)
+- Added scoring penalties for lifeline usage
+
+### 2. Docker Deployment
+- Created Dockerfile for Node.js application
+- Set up docker-compose for local development with:
+  - PostgreSQL container
+  - Redis container
+  - Application container
+
+### 3. Azure VM Deployment
+- Deployed Ubuntu 24.01 VM on Azure
+- Basic NGINX configuration:
+  - Reverse proxy to Node.js app
+  - SSL setup with Let's Encrypt
+  - Static file serving
+- Configured:
+  - Automatic container restart on failure
+  - Basic firewall rules
+  - SSH key authentication
