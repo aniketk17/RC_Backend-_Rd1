@@ -26,12 +26,6 @@ A competitive Reverse Coding event platform backend with real-time features, con
   - **Time Freeze**: Pause the countdown timer
   - **Double Points**: 2x score for current challenge
 
-- **Production Infrastructure**:
-  - NGINX reverse proxy with SSL termination
-  - Azure VM auto-scaling configuration
-  - Docker container orchestration
-  - Real-time monitoring dashboard
-
 ## My Contributions
 
 ### 1. Lifeline System Implementation
